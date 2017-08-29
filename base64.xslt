@@ -4,7 +4,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:fn="http://www.w3.org/2005/xpath-functions"
-	xmlns:b64="http://hmrc.gsi.gov.uk/base64.xslt"
+	xmlns:b64="http://xsl.expertml.com/base64.xslt"
 	>
 	
 	<!-- param to specify characters relating to positions 62 and 63 in base64 encoding map -->
