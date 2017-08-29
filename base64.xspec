@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description
+	xmlns:ajson="http://www.altova.com/json"
+	xmlns:x="http://www.jenitennison.com/xslt/xspec"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:b64="http://hmrc.gsi.gov.uk/base64.xslt"
+	stylesheet="base64.xslt">
+	
+	<x:scenario label="Scenario for testing function encode">
+		<x:call function="b64:encode"/>
+		<x:scenario label="With input 'Man'">
+			<x:call>
+				<x:param name="in" select="'Man'"/>
+			</x:call>
+			<x:expect label="should encode to 'TWFu'" select="'TWFu'"/>
+		</x:scenario>
+		<x:scenario label="With input 'Man is distinguished...'">
+			<x:call>
+				<x:param name="in" select="'Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.'"/>
+			</x:call>
+			<x:expect label="should encode to 'TWFuIGlzIGRpc3Rpbmd1aXNo...'" select="'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4='"/>
+		</x:scenario>
+		<x:scenario label="With input '1'">
+			<x:call>
+				<x:param name="in" select="'1'"/>
+			</x:call>
+			<x:expect label="should encode to 'MQ=='" select="'MQ=='"/>
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Scenario for testing function decode">
+		<x:call function="b64:decode"/>
+		<x:scenario label="With input 'TWFu'">
+			<x:call>
+				<x:param name="in" select="'TWFu'"/>
+			</x:call>
+			<x:expect label="should decode to 'Man'" select="'Man'"/>
+		</x:scenario>
+		<x:scenario label="With input 'TWFuIGlzIGRpc3Rpbmd1aXNo...'">
+			<x:call>
+				<x:param name="in" select="'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4='"/>
+			</x:call>
+			<x:expect label="should encode to 'Man is distinguished...'" select="'Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.'"/>
+		</x:scenario>
+		<x:scenario label="With non-padded input 'MQ'">
+			<x:call>
+				<x:param name="in" select="'MQ'"/>
+			</x:call>
+			<x:expect label="should decode to '1'" select="'1'"/>
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Scenario for testing function hex2bin">
+		<x:call function="b64:hex2bin"/>
+		<x:scenario label="With input '0'">
+			<x:call>
+				<x:param name="hex" select="'0'"/>
+			</x:call>
+			<x:expect label="should convert to '0'" select="'0'"/>
+		</x:scenario>
+		<x:scenario label="With input 0">
+			<x:call>
+				<x:param name="hex" select="0"/>
+			</x:call>
+			<x:expect label="should convert to '0'" select="'0'"/>
+		</x:scenario>
+		<x:scenario label="With input 'baddad'">
+			<x:call>
+				<x:param name="hex" select="'baddad'"/>
+			</x:call>
+			<x:expect label="should convert to 1011 1010 1101 1101 1010 1101" select="'101110101101110110101101'"/>
+		</x:scenario>
+		<x:scenario label="With input BADDAD">
+			<x:call>
+				<x:param name="hex" select="xs:hexBinary('BADDAD')"/>
+			</x:call>
+			<x:expect label="should convert to 1011 1010 1101 1101 1010 1101" select="'101110101101110110101101'"/>
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Scenario for testing function dec2bin">
+		<x:call function="b64:dec2bin"/>
+		<x:scenario label="With input '0'">
+			<x:call>
+				<x:param name="dec" select="'0'"/>
+			</x:call>
+			<x:expect label="should convert to '0'" select="'0'"/>
+		</x:scenario>
+		<x:scenario label="With input 0">
+			<x:call>
+				<x:param name="dec" select="0"/>
+			</x:call>
+			<x:expect label="should convert to '0'" select="'0'"/>
+		</x:scenario>
+		<x:scenario label="With input 830662">
+			<x:call>
+				<x:param name="dec" select="830662"/>
+			</x:call>
+			<x:expect label="should convert to ‭1100 1010 1100 1100 0110‬" select="'11001010110011000110'"/>
+		</x:scenario>
+		<x:scenario label="With input '830662'">
+			<x:call>
+				<x:param name="dec" select="'830662'"/>
+			</x:call>
+			<x:expect label="should convert to ‭1100 1010 1100 1100 0110‬" select="'11001010110011000110'"/>
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Scenario for testing function bin2dec">
+		<x:call function="b64:bin2dec"/>
+		<x:scenario label="With input 0">
+			<x:call>
+				<x:param name="bin" select="0"/>
+			</x:call>
+			<x:expect label="should convert to 0" select="0"/>
+		</x:scenario>
+		<x:scenario label="With input ‭1100 1010 1100 1100 0110">
+			<x:call>
+				<x:param name="bin" select="11001010110011000110"/>
+			</x:call>
+			<x:expect label="should convert to 830662" select="830662"/>
+		</x:scenario>
+	</x:scenario>
+
+  <x:scenario label="Scenario for testing function hex2dec">
+    <x:call function="b64:hex2dec">
+      <x:param name="hex" select="'CACC6'"/>
+    </x:call>
+    <x:expect label="'CACC6 should be converted to 830662" select="830662"/>
+    <x:scenario label="lower case is also acceptable:">
+			<x:call>
+				<x:param name="hex" select="'cacc6'"/>
+			</x:call>
+			<x:expect label="cacc6 should also be converted to 830662" select="830662"/>
+    </x:scenario>
+    <x:scenario label="even mixed case should work:">
+			<x:call>
+				<x:param name="hex" select="'cAcC6'"/>
+			</x:call>
+			<x:expect label="cAcC6 should still be converted to 830662" select="830662"/>
+    </x:scenario>
+    <x:scenario label="but non-hex inputs should throw an error" pending="no way to test currently without also failing XSpec compilation">
+			<x:call>
+				<x:param name="hex" select="'nan'"/>
+			</x:call>
+			<x:expect label="non-hex inputs should result in an error" select="()"/>
+    </x:scenario>
+  </x:scenario>
+
+  <x:scenario label="Scenario for testing function hex2dec cumulative helper function">
+    <x:call function="b64:hex2dec">
+      <x:param name="hex" select="'ACC6'"/>
+      <x:param name="dec" select="12"/>
+    </x:call>
+    <x:expect label="hex: ACC6 with dec: 12 should be converted to 830662" select="830662"/>
+  </x:scenario>
+    <x:scenario label="but non-hex or non-capitalized inputs should throw an error" pending="no way to test currently without also failing XSpec compilation">
+			<x:call>
+				<x:param name="hex" select="'AcC6'"/>
+				<x:param name="dec" select="12"/>
+			</x:call>
+			<x:expect label="non-hex inputs should result in an error" select="()"/>
+    </x:scenario>
+  
+</x:description>
