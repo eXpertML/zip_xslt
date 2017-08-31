@@ -59,15 +59,18 @@
             <xsl:sequence select="$in"/>
           </xsl:when>
           <xsl:otherwise>
+						<xsl:variable name="in2" as="element(zip:leaf)+">
+							<xsl:perform-sort select="$in">
+								<xsl:sort select="xs:double(./@weight)" order="ascending"/>
+							</xsl:perform-sort>
+						</xsl:variable>
             <xsl:variable name="newLeaf" as="element(zip:leaf)">
-              <zip:leaf weight="{sum($in[position() le 2]/@weight)}" chars="{string-join($in[position() le 2]/(@char|@chars), '')}">
-                <xsl:apply-templates select="$in[1], $in[2]" mode="zip:copy"/>
+              <zip:leaf weight="{xs:integer(sum($in2[position() le 2]/@weight))}" chars="{string-join($in2[position() le 2]/(@char|@chars), '')}">
+                <xsl:apply-templates select="$in2[1], $in2[2]" mode="zip:copy"/>
               </zip:leaf>
             </xsl:variable>
             <xsl:variable name="out" as="element(zip:leaf)+">
-              <xsl:perform-sort select="($in[position() gt 2], $newLeaf)">
-                <xsl:sort select="./@weight" order="ascending"/>
-              </xsl:perform-sort>
+              <xsl:sequence select="($in2[position() gt 2], $newLeaf)"/>
             </xsl:variable>
             <xsl:sequence select="zip:mkHuffTree($out)"/>
           </xsl:otherwise>
