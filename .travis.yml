@@ -14,4 +14,5 @@ before_script:
 script:
     - cd XSpec
     - echo "execute XSpec unit tests"
-    - ./run-xspec-tests.sh
+    - pwd
+    #- ./run-xspec-tests.sh
