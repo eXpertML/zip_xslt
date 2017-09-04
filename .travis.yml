@@ -1,0 +1,8 @@
+before_script:
+    - git clone -b master https://github.com/cirulls/xspec.git /tmp/xspec
+    - export SAXON_CP=/tmp/xspec/saxon9he.jar
+
+script:
+    - cd XSpec
+    - echo "execute XSpec unit tests"
+    - ./run-xspec-tests.sh
