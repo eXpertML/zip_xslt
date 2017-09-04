@@ -1,0 +1,17 @@
+notifications:
+    slack: expertml:D9h3Xm18Y3WRLtuNCdAAAZbp
+    email: false
+
+before_script:
+    # install XSpec
+    - git clone -b master https://github.com/xspec/xspec.git /tmp/xspec
+    # install Saxon
+    - mkdir -p /tmp/xspec/saxon 
+    - export SAXON_CP=/tmp/xspec/saxon/saxon9he.jar
+    - wget -O ${SAXON_CP} http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
+    - chmod +x ${SAXON_CP}
+
+script:
+    - cd XSpec
+    - echo "execute XSpec unit tests"
+    - ./.run-xspec-tests.sh

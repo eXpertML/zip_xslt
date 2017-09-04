@@ -4,7 +4,7 @@
 	xmlns:x="http://www.jenitennison.com/xslt/xspec"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:b64="http://xsl.expertml.com/base64.xslt"
-	stylesheet="base64.xslt">
+	stylesheet="../XSLT/base64.xslt">
 	
 	<x:scenario label="Scenario for testing function encode">
 		<x:call function="b64:encode"/>
