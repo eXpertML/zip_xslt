@@ -11,3 +11,6 @@ script:
     - cd XSpec
     - echo "execute XSpec unit tests"
     - ./run-xspec-tests.sh
+    
+ notifications:
+    slack: expertml:D9h3Xm18Y3WRLtuNCdAAAZbp
