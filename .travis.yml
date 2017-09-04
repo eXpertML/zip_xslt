@@ -1,5 +1,6 @@
 notifications:
     slack: expertml:D9h3Xm18Y3WRLtuNCdAAAZbp
+    email: false
 
 before_script:
     # install XSpec
