@@ -1,3 +1,6 @@
+notifications:
+    slack: expertml:D9h3Xm18Y3WRLtuNCdAAAZbp
+
 before_script:
     # install XSpec
     - git clone -b master https://github.com/xspec/xspec.git /tmp/xspec
@@ -11,6 +14,3 @@ script:
     - cd XSpec
     - echo "execute XSpec unit tests"
     - ./run-xspec-tests.sh
-    
- notifications:
-    slack: expertml:D9h3Xm18Y3WRLtuNCdAAAZbp
