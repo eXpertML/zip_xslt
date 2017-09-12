@@ -33,8 +33,23 @@
   </xsl:function>
   
   <xsl:function name="zip:countChars" as="element(zip:leaf)*">
-    <xsl:param name="in" as="xs:string"/>
-    <xsl:variable name="chars" as="xs:string*" select="zip:string2chars($in)"/>
+    <xsl:param name="in"/>
+    <xsl:variable name="chars" as="xs:integer*">
+      <xsl:choose>
+        <xsl:when test="$in instance of xs:integer*">
+          <xsl:sequence select="$in"/>
+        </xsl:when>
+        <xsl:when test="$in instance of xs:string and tokenize($in, ',') instance of xs:integer*">
+          <xsl:sequence select="for $c in tokenize($in, ',') return xs:integer($c)"/>
+        </xsl:when>
+        <xsl:when test="$in instance of xs:string">
+          <xsl:sequence select="string-to-codepoints($in)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="error((), 'Invalid input for countChars() function', $in)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="leaves">
       <xsl:for-each select="distinct-values($chars)">
         <xsl:variable name="char" select="."/>
@@ -65,7 +80,7 @@
 							</xsl:perform-sort>
 						</xsl:variable>
             <xsl:variable name="newLeaf" as="element(zip:leaf)">
-              <zip:leaf weight="{xs:integer(sum($in2[position() le 2]/@weight))}" chars="{string-join($in2[position() le 2]/(@char|@chars), '')}">
+              <zip:leaf weight="{xs:integer(sum($in2[position() le 2]/@weight))}" chars="{string-join($in2[position() le 2]/(@char|@chars), ',')}">
                 <xsl:apply-templates select="$in2[1], $in2[2]" mode="zip:copy"/>
               </zip:leaf>
             </xsl:variable>
@@ -76,6 +91,9 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
+      <!--<xsl:otherwise>
+          <xsl:value-of select="error((), 'Invalid input for mkHuffTree() function', $in)"/>
+      </xsl:otherwise>-->
     </xsl:choose>
   </xsl:function>
   
@@ -134,7 +152,7 @@
         <xsl:variable name="rem" select="substring($in, 2)"/>
         <xsl:choose>
           <xsl:when test="$tree/@char">
-            <xsl:value-of select="zip:Huffdecode($in, $orig, $orig, concat($out, $tree/@char))"/>
+            <xsl:value-of select="zip:Huffdecode($in, $orig, $orig, concat($out, codepoints-to-string($tree/@char)))"/>
           </xsl:when>
           <xsl:when test="$tree/@chars">
             <xsl:value-of select="zip:Huffdecode($rem, $tree/zip:leaf[$pos], $orig, $out)"/>
@@ -144,7 +162,7 @@
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$tree/@char">
-            <xsl:value-of select="concat($out, $tree/@char)"/>
+            <xsl:value-of select="concat($out, codepoints-to-string($tree/@char))"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$out"/>
@@ -157,9 +175,9 @@
   <xsl:function name="zip:HuffTreeEncode" as="xs:string">
     <xsl:param name="in" as="xs:string"/>
     <xsl:param name="tree" as="element(zip:leaf)"/>
-    <xsl:variable name="char" select="substring($in, 1, 1)"/>
+    <xsl:variable name="char" select="tokenize($in, ',')[1]"/>
     <xsl:variable name="bits">
-      <xsl:apply-templates select="$tree/*[contains((@chars, @char)[1], $char)]" mode="zip:HuffTreeEncode">
+      <xsl:apply-templates select="$tree/*[tokenize((@chars, @char)[1], ',') = $char]" mode="zip:HuffTreeEncode">
         <xsl:with-param name="ch" tunnel="yes" select="$char"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -169,12 +187,12 @@
   <xsl:template match="zip:leaf" mode="zip:HuffTreeEncode">
     <xsl:param name="ch" tunnel="yes" as="xs:string"/>
     <xsl:value-of select="count(preceding-sibling::*)"/>
-    <xsl:apply-templates select="zip:leaf[contains((@chars, @char)[1], $ch)]" mode="zip:HuffTreeEncode"/>
+    <xsl:apply-templates select="zip:leaf[tokenize((@chars, @char)[1], ',') = $ch]" mode="zip:HuffTreeEncode"/>
   </xsl:template>
   
   <xsl:function name="zip:mkEncodeTbl" as="element(zip:table)+">
     <xsl:param name="tree" as="element(zip:leaf)"/>
-    <xsl:for-each select="zip:string2chars($tree/@chars)">
+    <xsl:for-each select="tokenize($tree/@chars, ',')">
       <zip:table char="{.}" code="{zip:HuffTreeEncode(., $tree)}"/>
     </xsl:for-each>
   </xsl:function>
@@ -184,8 +202,8 @@
     <xsl:param name="tree" as="element(zip:leaf)"/>
     <xsl:variable name="table" select="zip:mkEncodeTbl($tree)"/>
     <xsl:variable name="codes">
-      <xsl:for-each select="zip:string2chars($string)">
-        <xsl:variable name="ch" select="."/>
+      <xsl:for-each select="string-to-codepoints($string)">
+        <xsl:variable name="ch" select="string(.)"/>
         <xsl:value-of select="$table[@char eq $ch]/@code"/>
       </xsl:for-each>
     </xsl:variable>

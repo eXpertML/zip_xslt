@@ -2,78 +2,78 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:zip="http://expertml.com/lib/zip" stylesheet="../XSLT/zip_xslt2.xsl">
   
   <x:param name="french">
-    <zip:leaf weight="1486387" chars="sdxjfzkwyhqolmpurcvgbnteia">
-      <zip:leaf weight="605362" chars="sdxjfzkwyhqolmpu">
-        <zip:leaf weight="250291" chars="sdxjfzkwyhq">
-          <zip:leaf weight="121895" char="s"/>
-          <zip:leaf weight="128396" chars="dxjfzkwyhq">
-            <zip:leaf weight="56269" char="d"/>
-            <zip:leaf weight="72127" chars="xjfzkwyhq">
-              <zip:leaf weight="30630" chars="xjf">
-                <zip:leaf weight="14279" chars="xj">
-                  <zip:leaf weight="5928" char="x"/>
-                  <zip:leaf weight="8351" char="j"/>
+    <zip:leaf weight="1486387" chars="115,100,120,106,102,122,107,119,121,104,113,111,108,109,112,117,114,99,118,103,98,110,116,101,105,97">
+      <zip:leaf weight="605362" chars="115,100,120,106,102,122,107,119,121,104,113,111,108,109,112,117">
+        <zip:leaf weight="250291" chars="115,100,120,106,102,122,107,119,121,104,113">
+          <zip:leaf weight="121895" char="115"/>
+          <zip:leaf weight="128396" chars="100,120,106,102,122,107,119,121,104,113">
+            <zip:leaf weight="56269" char="100"/>
+            <zip:leaf weight="72127" chars="120,106,102,122,107,119,121,104,113">
+              <zip:leaf weight="30630" chars="120,106,102">
+                <zip:leaf weight="14279" chars="120,106">
+                  <zip:leaf weight="5928" char="120"/>
+                  <zip:leaf weight="8351" char="106"/>
                 </zip:leaf>
-                <zip:leaf weight="16351" char="f"/>
+                <zip:leaf weight="16351" char="102"/>
               </zip:leaf>
-              <zip:leaf weight="41497" chars="zkwyhq">
-                <zip:leaf weight="20608" chars="zkwyh">
-                  <zip:leaf weight="9310" chars="zkwy">
-                    <zip:leaf weight="4585" chars="zkw">
-                      <zip:leaf weight="2093" char="z"/>
-                      <zip:leaf weight="2492" chars="kw">
-                        <zip:leaf weight="745" char="k"/>
-                        <zip:leaf weight="1747" char="w"/>
+              <zip:leaf weight="41497" chars="122,107,119,121,104,113">
+                <zip:leaf weight="20608" chars="122,107,119,121,104">
+                  <zip:leaf weight="9310" chars="122,107,119,121">
+                    <zip:leaf weight="4585" chars="122,107,119">
+                      <zip:leaf weight="2093" char="122"/>
+                      <zip:leaf weight="2492" chars="107,119">
+                        <zip:leaf weight="745" char="107"/>
+                        <zip:leaf weight="1747" char="119"/>
                       </zip:leaf>
                     </zip:leaf>
-                    <zip:leaf weight="4725" char="y"/>
+                    <zip:leaf weight="4725" char="121"/>
                   </zip:leaf>
-                  <zip:leaf weight="11298" char="h"/>
+                  <zip:leaf weight="11298" char="104"/>
                 </zip:leaf>
-                <zip:leaf weight="20889" char="q"/>
+                <zip:leaf weight="20889" char="113"/>
               </zip:leaf>
             </zip:leaf>
           </zip:leaf>
         </zip:leaf>
-        <zip:leaf weight="355071" chars="olmpu">
-          <zip:leaf weight="166430" chars="ol">
-            <zip:leaf weight="82762" char="o"/>
-            <zip:leaf weight="83668" char="l"/>
+        <zip:leaf weight="355071" chars="111,108,109,112,117">
+          <zip:leaf weight="166430" chars="111,108">
+            <zip:leaf weight="82762" char="111"/>
+            <zip:leaf weight="83668" char="108"/>
           </zip:leaf>
-          <zip:leaf weight="188641" chars="mpu">
-            <zip:leaf weight="91856" chars="mp">
-              <zip:leaf weight="45521" char="m"/>
-              <zip:leaf weight="46335" char="p"/>
+          <zip:leaf weight="188641" chars="109,112,117">
+            <zip:leaf weight="91856" chars="109,112">
+              <zip:leaf weight="45521" char="109"/>
+              <zip:leaf weight="46335" char="112"/>
             </zip:leaf>
-            <zip:leaf weight="96785" char="u"/>
+            <zip:leaf weight="96785" char="117"/>
           </zip:leaf>
         </zip:leaf>
       </zip:leaf>
-      <zip:leaf weight="881025" chars="rcvgbnteia">
-        <zip:leaf weight="422503" chars="rcvgbnt">
-          <zip:leaf weight="202588" chars="rcvgb">
-            <zip:leaf weight="100500" char="r"/>
-            <zip:leaf weight="102088" chars="cvgb">
-              <zip:leaf weight="50003" char="c"/>
-              <zip:leaf weight="52085" chars="vgb">
-                <zip:leaf weight="24975" char="v"/>
-                <zip:leaf weight="27110" chars="gb">
-                  <zip:leaf weight="13288" char="g"/>
-                  <zip:leaf weight="13822" char="b"/>
+      <zip:leaf weight="881025" chars="114,99,118,103,98,110,116,101,105,97">
+        <zip:leaf weight="422503" chars="114,99,118,103,98,110,116">
+          <zip:leaf weight="202588" chars="114,99,118,103,98">
+            <zip:leaf weight="100500" char="114"/>
+            <zip:leaf weight="102088" chars="99,118,103,98">
+              <zip:leaf weight="50003" char="99"/>
+              <zip:leaf weight="52085" chars="118,103,98">
+                <zip:leaf weight="24975" char="118"/>
+                <zip:leaf weight="27110" chars="103,98">
+                  <zip:leaf weight="13288" char="103"/>
+                  <zip:leaf weight="13822" char="98"/>
                 </zip:leaf>
               </zip:leaf>
             </zip:leaf>
           </zip:leaf>
-          <zip:leaf weight="219915" chars="nt">
-            <zip:leaf weight="108812" char="n"/>
-            <zip:leaf weight="111103" char="t"/>
+          <zip:leaf weight="219915" chars="110,116">
+            <zip:leaf weight="108812" char="110"/>
+            <zip:leaf weight="111103" char="116"/>
           </zip:leaf>
         </zip:leaf>
-        <zip:leaf weight="458522" chars="eia">
-          <zip:leaf weight="225947" char="e"/>
-          <zip:leaf weight="232575" chars="ia">
-            <zip:leaf weight="115465" char="i"/>
-            <zip:leaf weight="117110" char="a"/>
+        <zip:leaf weight="458522" chars="101,105,97">
+          <zip:leaf weight="225947" char="101"/>
+          <zip:leaf weight="232575" chars="105,97">
+            <zip:leaf weight="115465" char="105"/>
+            <zip:leaf weight="117110" char="97"/>
           </zip:leaf>
         </zip:leaf>
       </zip:leaf>
@@ -89,12 +89,12 @@
   
   <x:scenario label="Scenario for testing function countChars">
     <x:call function="zip:countChars">
-      <x:param name="in" select="'abbada'"/>
+      <x:param name="in" select="string-to-codepoints('abbada')"/>
     </x:call>
-    <x:expect label="Expect something like ((d,1), (b,2), (a,3))">
-      <zip:leaf char="d" weight="1"/>
-      <zip:leaf char="b" weight="2"/>
-      <zip:leaf char="a" weight="3"/>
+    <x:expect label="Expect something like ((100,1), (98,2), (97,3))">
+      <zip:leaf char="100" weight="1"/>
+      <zip:leaf char="98" weight="2"/>
+      <zip:leaf char="97" weight="3"/>
     </x:expect>
   </x:scenario>
   
@@ -103,11 +103,11 @@
       <x:param name="in" select="'abbada'"/>
     </x:call>
     <x:expect label="Expect a particular Huffman Tree">
-      <zip:leaf weight="6" chars="abd">
-        <zip:leaf weight="3" char="a"/>
-        <zip:leaf weight="3" chars="bd">
-          <zip:leaf weight="1" char="d"/>
-          <zip:leaf weight="2" char="b"/>
+      <zip:leaf weight="6" chars="97,98,100">
+        <zip:leaf weight="3" char="97"/>
+        <zip:leaf weight="3" chars="98,100">
+          <zip:leaf weight="1" char="100"/>
+          <zip:leaf weight="2" char="98"/>
         </zip:leaf>
       </zip:leaf>
     </x:expect>
